@@ -96,6 +96,13 @@ logging {
 {% endif %}
 };
 
+{% for mykey in bind_dns_keys %}
+key {{ mykey.name }} {
+  algorithm {{ mykey.algorithm }};
+  secret "{{ mykey.secret }}";
+};
+{% endfor %}
+
 {% for file in bind_default_zone_files %}
 include "{{ file }}";
 {% endfor %}
